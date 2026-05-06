@@ -1,0 +1,7 @@
+tests/__pycache__/
+data_classes/__pycache__/
+clients/__pycache__/
+tests/.pytest_cache/
+__pycache__/
+.pytest_cache/
+allure_results
