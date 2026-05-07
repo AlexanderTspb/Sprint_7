@@ -12,12 +12,7 @@ class CourierClient(BaseClient):
             self.COURIER_PATH,
             json=courier
         )
-        self.print_response(response, "запрос на создание курьера")
         return response
-
-    @staticmethod
-    def print_response(response, request_name):
-        print(f"Ответ на {request_name}: {response.text} \n ------")
 
     @allure.step('Отправляем запрос на логин курьера {login}')
     def login_courier(self, login):
@@ -26,7 +21,6 @@ class CourierClient(BaseClient):
             f"{self.COURIER_PATH}/login",
             json=login
         )
-        self.print_response(response, "запрос на логин курьера")
         return response
     
     @allure.step('Отправляем запрос на удаление курьера по id курьера {courier_id}')
@@ -35,7 +29,6 @@ class CourierClient(BaseClient):
             "DELETE",
             f"{self.COURIER_PATH}/{courier_id}"
         )
-        self.print_response(response, "запрос на удаление курьера")
         return response
 
     @allure.step('Отправляем запрос на удаление курьера без id курьера')
@@ -44,5 +37,5 @@ class CourierClient(BaseClient):
             "DELETE",
             f"{self.COURIER_PATH}/"
         )
-        self.print_response(response, "запрос на удаление курьера без id")
         return response
+    

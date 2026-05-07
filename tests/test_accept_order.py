@@ -7,10 +7,7 @@ class TestScooterAcceptOrder:
     @allure.title("Принятие заказа c корректными параметрами")
     def test_accept_order_with_correct_parameters(self, init_courier_client, create_courier, init_order_client, create_order_obj):
 
-        print("*****Тест*****")
-        
         data_dictionary_courier = create_courier.to_dict_correct(fields_to_remove = ['firstName'])
-        print(f"Тестовые данные: {data_dictionary_courier}")
         #отправляем запрос на логин, чтобы затем получить id курьера
         response = init_courier_client.login_courier(data_dictionary_courier)
         body = response.json()
@@ -39,8 +36,6 @@ class TestScooterAcceptOrder:
     @allure.title("Принятие заказа c пустым id курьера")
     def test_accept_order_with_empty_courier_id(self, init_order_client, create_order_obj):
 
-        print("*****Тест*****")
-        
         courier_id = ""
         #создаем заказ
         data_dictionary_order = create_order_obj.to_dict_correct()
@@ -65,8 +60,6 @@ class TestScooterAcceptOrder:
     @allure.title("Принятие заказа без id курьера")
     def test_accept_order_without_courier_id(self, init_order_client, create_order_obj):
 
-        print("*****Тест*****")
-        
         #создаем заказ
         data_dictionary_order = create_order_obj.to_dict_correct()
         #отправляем запрос на создание заказа, чтобы затем получить номер трека
@@ -89,10 +82,7 @@ class TestScooterAcceptOrder:
     @allure.title("Принятие заказа без id заказа")
     def test_accept_order_without_order_id(self, init_courier_client, create_courier, init_order_client):
 
-        print("*****Тест*****")
-        
         data_dictionary_courier = create_courier.to_dict_correct(fields_to_remove = ['firstName'])
-        print(f"Тестовые данные: {data_dictionary_courier}")
         #отправляем запрос на логин, чтобы затем получить id курьера
         response = init_courier_client.login_courier(data_dictionary_courier)
         body = response.json()
@@ -108,8 +98,6 @@ class TestScooterAcceptOrder:
     @allure.title("Принятие заказа c некорректным id курьера")
     def test_accept_order_with_incorrect_courier_id(self, init_order_client, create_order_obj):
 
-        print("*****Тест*****")
-        
         courier_id = "000000"
         #создаем заказ
         data_dictionary_order = create_order_obj.to_dict_correct()
@@ -133,10 +121,7 @@ class TestScooterAcceptOrder:
     @allure.title("Принятие заказа c некорректным id заказа")
     def test_accept_order_with_incorrect_order_id(self, init_courier_client, create_courier, init_order_client):
 
-        print("*****Тест*****")
-        
         data_dictionary_courier = create_courier.to_dict_correct(fields_to_remove = ['firstName'])
-        print(f"Тестовые данные: {data_dictionary_courier}")
         #отправляем запрос на логин, чтобы затем получить id курьера
         response = init_courier_client.login_courier(data_dictionary_courier)
         body = response.json()
@@ -148,3 +133,4 @@ class TestScooterAcceptOrder:
         body = response_accept_order.json()
         assert response_accept_order.status_code == 404
         assert body['message'] == AcceptOrderData.NOT_EXISTING_ORDER
+        

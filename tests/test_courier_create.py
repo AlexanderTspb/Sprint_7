@@ -10,7 +10,6 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct()
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 201
@@ -23,7 +22,6 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct(field_to_make_empty = ['firstName'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 201
@@ -36,7 +34,6 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct(field_to_make_empty = ['login'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 400
@@ -48,7 +45,6 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct(field_to_make_empty = ['password'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 400
@@ -60,9 +56,7 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct()
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 409
@@ -75,12 +69,10 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct()
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         login = courier.login
         new_courier_with_existing_login = Courier(login)
         data_dictionary_new_courier = new_courier_with_existing_login.to_dict_correct()
-        print(f"Тестовые данные: {data_dictionary_new_courier}")
         response = init_courier_client.create_courier(data_dictionary_new_courier)
         body = response.json()
         assert response.status_code == 409
@@ -93,7 +85,6 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct(fields_to_remove = ['firstName'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 201
@@ -106,7 +97,6 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct(fields_to_remove = ['login'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 400
@@ -118,8 +108,8 @@ class TestScooterCreateCourier:
 
         courier = Courier()
         data_dictionary = courier.to_dict_correct(fields_to_remove = ['password'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.create_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 400
         assert body["message"] == CourierCreateData.NOT_ENOUGH_DATA
+        

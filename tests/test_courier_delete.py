@@ -8,7 +8,6 @@ class TestScooterDeleteCourier:
     def test_delete_courier_with_correct_parameters(self, init_courier_client, create_courier):
 
         data_dictionary_courier = create_courier.to_dict_correct(fields_to_remove = ['firstName'])
-        print(f"Тестовые данные: {data_dictionary_courier}")
         #отправляем запрос на логин, чтобы затем получить id курьера
         response = init_courier_client.login_courier(data_dictionary_courier)
         body = response.json()

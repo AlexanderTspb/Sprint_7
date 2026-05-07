@@ -10,7 +10,6 @@ class TestScooterGetOrderNumber:
         #создаем заказ
         data_dictionary_order = create_order_obj.to_dict_correct()
         #отправляем запрос на создание заказа, чтобы затем получить номер трека
-        print(f"Тестовые данные: {data_dictionary_order}")
         response_order = init_order_client.create(data_dictionary_order)
         body = response_order.json()
         #получаем номер трека

@@ -19,7 +19,6 @@ class TestScooterCreateOrder:
 
         order = Order(color=colors)
         data_dictionary = order.to_dict_correct()
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_order_client.create(data_dictionary)
         body = response.json()
         assert response.status_code == 201

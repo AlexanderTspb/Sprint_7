@@ -8,7 +8,6 @@ class TestScooterLoginCourier:
     def test_login_courier_with_correct_parameters(self, init_courier_client, create_courier):
 
         data_dictionary = create_courier.to_dict_correct(fields_to_remove = ['firstName'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.login_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 200
@@ -19,7 +18,6 @@ class TestScooterLoginCourier:
     def test_login_courier_without_login_field(self, init_courier_client, create_courier):
 
         data_dictionary = create_courier.to_dict_correct(fields_to_remove = ['firstName', 'login'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.login_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 400
@@ -30,7 +28,6 @@ class TestScooterLoginCourier:
     def test_login_courier_with_empty_login(self, init_courier_client, create_courier):
 
         data_dictionary = create_courier.to_dict_correct(fields_to_remove = ['firstName'], field_to_make_empty = ['login'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.login_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 400
@@ -41,7 +38,6 @@ class TestScooterLoginCourier:
     def test_login_courier_with_empty_password(self, init_courier_client, create_courier):
 
         data_dictionary = create_courier.to_dict_correct(fields_to_remove = ['firstName'], field_to_make_empty = ['password'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.login_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 400
@@ -53,7 +49,6 @@ class TestScooterLoginCourier:
 
         updated_dictionary = {'login': f'{create_courier.login}i'}
         data_dictionary = create_courier.to_dict_correct(fields_to_remove = ['firstName'], updated_dictionary = updated_dictionary)
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.login_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 404
@@ -65,7 +60,6 @@ class TestScooterLoginCourier:
 
         updated_dictionary = {'password': f'{create_courier.password}i'}
         data_dictionary = create_courier.to_dict_correct(fields_to_remove = ['firstName'], updated_dictionary = updated_dictionary)
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.login_courier(data_dictionary)
         body = response.json()
         assert response.status_code == 404
@@ -76,6 +70,5 @@ class TestScooterLoginCourier:
     def test_login_courier_without_password_field(self, init_courier_client, create_courier):
 
         data_dictionary = create_courier.to_dict_correct(fields_to_remove = ['firstName','password'])
-        print(f"Тестовые данные: {data_dictionary}")
         response = init_courier_client.login_courier(data_dictionary)
         assert response.status_code == 504
